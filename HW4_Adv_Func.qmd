@@ -1,0 +1,366 @@
+---
+title: "ST558 HW4: Hodge Podge"
+format: html
+editor: visual
+---
+
+# Document Details
+
+#### Author: *Smit Miyani*
+
+#### Collaborators: *N/A*
+
+#### Assignment: *HW4*
+
+#### Date: *23JUN24*
+
+#### Purpose
+
+*General practice in working with advanced functions.*\
+
+```{r}
+knitr::opts_chunk$set(message = TRUE, warning = TRUE)
+
+#Remove Warnings
+```
+
+# Tasks
+
+## Task 1: Conceptual Questions
+
+1.  What is the purpose of the `lapply()` function? What is the equivalent `purrr` function?
+
+    > The purpose of `lapply()`: `lapply()` in R is used to apply a function to each element of a list or vector, returning a list of the results. In the `purrr` package, the equivalent function to `lapply()` is `map()`.
+
+2.  Suppose we have a list called `my_list`. Each element of the list is a numeric data frame (all columns are numeric). We want use `lapply()` to run the code `cor(numeric_matrix, method = "kendall")` on each element of the list. Write code to do this below
+
+    > `lapply(my_list, function(df) cor(df, method = "kendall"))`.
+
+3.  What are two advantages of using `purrr` functions instead of the BaseR `apply` family?
+
+    > 1\. `purrr` functions always return outputs in a predictable format (usually a list), regardless of the input data structure. making it easier to work with results consistently across different scenarios.
+    >
+    > 2\. `purrr` integrates with other `purrr` functions and the tidyverse ecosystem very well, making it easier to combine operations and make chaining easy thus reduces the need for writing custom helper functions.
+
+4.  What is a side-effect function?
+
+    > A side effect function is a function that not only computes a result but also performs actions that may alter the program's state or interact with the external environment.
+
+5.  Why can you name a variable `sd` in a function and not cause any issues with the `sd` function?
+
+    > Because R keeps track of variables separately within each function. When R sees `sd` inside the function, it looks first at the function's own set of variables before checking if `sd` is a function. This avoids conflicts and lets us use the same name `sd` for a variable without affecting how the `sd` function works globally.
+
+## Task 2: Writing R Functions
+
+### Loading Packages
+
+Reading required tidyverse packages:
+
+```{r}
+library(tidyverse)
+```
+
+### Question 1: Creating `getRMSE()` function
+
+Creating a function `getRMSE` that takes in vector of observations, and predictions and returns RMSE. Using `…` to have additional arguments for handling of NA values which would be used within the `mean()` function.
+
+```{r}
+getRMSE <- function(responses, predictions, ...) {
+  # Ensuring the responses and predictions are numeric vectors of the same length
+  if (length(responses) != length(predictions) | (!is.numeric(responses)) | (!is.numeric(predictions))) {
+    stop("Input vectors 'responses' and 'predictions' must be numeric and of the same length.")
+  }
+  # Calculating RMSE. 
+  rmse <- sqrt(mean((responses - predictions)^2, ...))
+  
+  return(rmse)
+}
+
+```
+
+### Question 2: Testing the `getRMSE()` function
+
+Generating data (code given in assignment) to test the `getRMSE()` function.
+
+```{r}
+set.seed(10)
+n <- 100
+x <- runif(n)
+resp <- 3 + 10*x + rnorm(n)
+pred <- predict(lm(resp ~ x), data.frame(x))
+```
+
+#### Testing with no `NA` values
+
+Testing `getRMSE()` with `resp` and `pred` .
+
+```{r}
+getRMSE(responses = resp,predictions = pred)
+```
+
+#### Testing with vectors containing `NA_real_`
+
+Replacing two random observations (choosing index at random using `sample()` from 1: `length(resp)` in `resp` with `NA_real_` .
+
+```{r}
+set.seed(55)
+
+random_index <- sample(1:length(resp),size = 2)
+
+resp[random_index[1]] <- NA_real_
+resp[random_index[2]] <- NA_real_
+
+sum(is.na(resp))
+```
+
+##### RMSE without handling `NA`
+
+```{r}
+getRMSE(predictions = pred,responses = resp)
+```
+
+##### RMSE with an argument for handling `NA`
+
+```{r}
+getRMSE(predictions = pred,responses = resp, na.rm = TRUE)
+```
+
+### Question 3: Creating `getMAE()` function
+
+Creating `getMAE()` function similar to `getRMSE()`
+
+```{r}
+getMAE <- function(responses, predictions, ...) {
+  # Ensuring the responses and predictions are numeric vectors of the same length
+  if (length(responses) != length(predictions) | (!is.numeric(responses)) | (!is.numeric(predictions))) {
+    stop("Input vectors 'responses' and 'predictions' must be numeric and of the same length.")
+  }
+  # Calculating MAE 
+  mae <- mean(abs(responses - predictions), ...)
+  
+  return(mae)
+}
+```
+
+### Question 4: Testing the `getMAE()` function
+
+Generating data (code given in assignment) to test the `getMAE()` function.
+
+```{r}
+set.seed(10)
+n <- 100
+x <- runif(n)
+resp <- 3 + 10*x + rnorm(n)
+pred <- predict(lm(resp ~ x), data.frame(x))
+
+```
+
+#### Testing with no `NA` values
+
+Testing `getMAE()` with `resp` and `pred` .
+
+```{r}
+getMAE(responses = resp,predictions = pred)
+```
+
+#### Testing with vectors containing `NA_real_`
+
+Replacing two random observations (choosing index at random using `sample()` from 1: `length(resp)` in `resp` with `NA_real_` .
+
+```{r}
+set.seed(35)
+
+random_index <- sample(1:length(resp),size = 2)
+
+resp[random_index[1]] <- NA_real_
+resp[random_index[2]] <- NA_real_
+
+sum(is.na(resp))
+```
+
+##### MAE without handling `NA`
+
+```{r}
+getMAE(predictions = pred,responses = resp)
+```
+
+##### MAE with an argument for handling `NA`
+
+```{r}
+getMAE(predictions = pred,responses = resp, na.rm = TRUE)
+```
+
+### Question 5: Wrapper Function
+
+Creating `getMetrics()` which calls the helper function
+
+```{r}
+getMetrics <- function(responses, predictions,metric = "BOTH", ...) {
+  # Ensuring the responses and predictions are numeric vectors of the same length
+  if (length(responses) != length(predictions) | (!is.numeric(responses)) | (!is.numeric(predictions)) | (!is.vector(responses)) | (!is.vector(responses))) {
+    stop("Input vectors 'responses' and 'predictions' must be numeric and of the same length.")
+  }
+  # Calculating metrics 
+  RMSE<- getRMSE(responses = responses, predictions = predictions,...)
+  MAE <- getMAE(responses = responses, predictions = predictions,...)
+  
+  METRICS <- c(RMSE,MAE)
+  names(METRICS) <- c("RMSE","MAE")
+  
+  if (metric == "BOTH"){
+    return(METRICS)
+  } else if (metric == "RMSE"){
+    return(METRICS[1])
+  } else if (metric == "MAE"){
+    return(METRICS[2])
+  } else {
+    "Choose RMSE,MAE or BOTH"
+  }
+}
+```
+
+### Question 6: Testing `getMetrics()`
+
+Generating data (code given in assignment) to test the `getMetrics()` function.
+
+```{r}
+set.seed(10)
+n <- 100
+x <- runif(n)
+resp <- 3 + 10*x + rnorm(n)
+pred <- predict(lm(resp ~ x), data.frame(x))
+```
+
+#### Calling specific metric
+
+##### Calling for RMSE
+
+```{r}
+getMetrics(predictions = pred,responses = resp,metric = "RMSE")
+```
+
+##### Calling for MAE
+
+```{r}
+getMetrics(predictions = pred,responses = resp,metric = "MAE")
+```
+
+##### Calling for BOTH
+
+```{r}
+getMetrics(predictions = pred,responses = resp,metric = "BOTH")
+```
+
+#### Testing with `NA` values
+
+Replacing two random observations similar to previous instance.
+
+```{r}
+set.seed(45)
+
+random_index <- sample(1:length(resp),size = 2)
+
+resp[random_index[1]] <- NA_real_
+resp[random_index[2]] <- NA_real_
+
+sum(is.na(resp))
+```
+
+##### `getMetrics` without handling `NA`
+
+```{r}
+getMetrics(predictions = pred,responses = resp)
+```
+
+##### `getMetrics` with an argument for handling `NA`
+
+```{r}
+getMetrics(predictions = pred,responses = resp, na.rm = TRUE)
+```
+
+##### `getMetrics` with incorrect data
+
+Passing in a dataframe instead of a vector.
+
+```{r}
+#| error: true
+getMetrics(predictions = data.frame(x),responses = resp, na.rm = TRUE)
+```
+
+## Task 3: Quering an API and a Tidy-Style Function
+
+Necessary Packages:
+
+```{r}
+library(httr)
+library(jsonlite)
+```
+
+### Question 1: Querying the API and storing as `JSON` .
+
+#### 
+
+Using a URL to query the News API for top headlines using `GET()`, then retrieing raw content, converting it to a character string with `rawToChar()`, and parsing it into a structured R object using `fromJSON()`.
+
+```{r}
+
+url <- "https://newsapi.org/v2/top-headlines?country=gb&q=Euro&from=2024-05-25&to=2024-06-25&category=sports&apiKey=<key_stored_locally>" 
+
+news <- GET(url)
+news_data <- rawToChar(news$content)
+news_json <- fromJSON(news_data)
+```
+
+### Question 2: Returning the dataframe with articles information .
+
+Extracting `news_json$articles` which contains the all the information about articles as dataframe.
+
+```{r}
+news_json$articles
+```
+
+### Question 3: Creating a Tidy Style Function for Querying NewsAPI .
+
+#### Creating the function
+
+Creating a function to query the API using a keyword, from_date and key as an input.
+
+```{r}
+news_api <- function(keyword, from_date, api_key) {
+  base_url <- "https://newsapi.org/v2/top-headlines"
+  
+  # Construct the URL with parameters
+  url <- modify_url(
+    base_url,
+    query = list(
+      q = keyword,
+      from = from_date,
+      to = Sys.Date(),  # Today
+      apiKey = api_key
+    )
+  )
+  
+  # Make the API request
+  news <- GET(url)
+  news_data <- rawToChar(news$content)
+  news_json <- fromJSON(news_data)
+  news_json$articles
+  
+}
+
+```
+
+#### Testing the function
+
+Testing the function using the `keyword` = "Euro", `from_date` = "2024-05-25"
+
+```{r}
+
+news_api(keyword = "Euro",from_date = "2024-05-25",api_key = "e715bbaccd5849a0baf5c9fa6eb42a68") #Key Stored Locally
+```
+
+Trying with different keyword and different data
+
+```{r}
+news_api(keyword = "UEFA",from_date = "2024-06-05",api_key = "e715bbaccd5849a0baf5c9fa6eb42a68")
+```
