@@ -356,11 +356,11 @@ Testing the function using the `keyword` = "Euro", `from_date` = "2024-05-25"
 
 ```{r}
 
-news_api(keyword = "Euro",from_date = "2024-05-25",api_key = "e715bbaccd5849a0baf5c9fa6eb42a68") #Key Stored Locally
+head(news_api(keyword = "Euro",from_date = "2024-05-25",api_key = "e715bbaccd5849a0baf5c9fa6eb42a68"))
 ```
 
 Trying with different keyword and different data
 
 ```{r}
-news_api(keyword = "UEFA",from_date = "2024-06-05",api_key = "e715bbaccd5849a0baf5c9fa6eb42a68")
+head(news_api(keyword = "UEFA",from_date = "2024-06-05",api_key = "e715bbaccd5849a0baf5c9fa6eb42a68"))
 ```

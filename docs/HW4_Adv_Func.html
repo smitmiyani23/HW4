@@ -546,160 +546,62 @@ Attaching package: 'jsonlite'</code></pre>
 <h4 class="anchored" data-anchor-id="testing-the-function">Testing the function</h4>
 <p>Testing the function using the <code>keyword</code> = “Euro”, <code>from_date</code> = “2024-05-25”</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">news_api</span>(<span class="at">keyword =</span> <span class="st">"Euro"</span>,<span class="at">from_date =</span> <span class="st">"2024-05-25"</span>,<span class="at">api_key =</span> <span class="st">"e715bbaccd5849a0baf5c9fa6eb42a68"</span>) <span class="co">#Key Stored Locally</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">news_api</span>(<span class="at">keyword =</span> <span class="st">"Euro"</span>,<span class="at">from_date =</span> <span class="st">"2024-05-25"</span>,<span class="at">api_key =</span> <span class="st">"e715bbaccd5849a0baf5c9fa6eb42a68"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>        source.id         source.name                   author
-1            bild                Bild Bettina von Schimmelmann
-2         reuters             Reuters              Andrew Gray
-3            bild                Bild             André Albers
-4       bbc-sport           BBC Sport                     &lt;NA&gt;
-5       bbc-sport           BBC Sport                     &lt;NA&gt;
-6       bbc-sport           BBC Sport                     &lt;NA&gt;
-7   four-four-two         FourFourTwo                Joe Mewis
-8   four-four-two         FourFourTwo       Callum Rice-Coates
-9   four-four-two         FourFourTwo                Joe Mewis
-10  four-four-two         FourFourTwo                Joe Mewis
-11           espn                ESPN                     &lt;NA&gt;
-12 google-news-it Google News (Italy)             Agenzia ANSA
-13  four-four-two         FourFourTwo                Joe Mewis
-14    abc-news-au       ABC News (AU)          Faith Tabalujan
-15      bbc-sport           BBC Sport                     &lt;NA&gt;
-16 google-news-it Google News (Italy)                 Il Tempo
-17  four-four-two         FourFourTwo             Matthew Holt
-18  four-four-two         FourFourTwo       Callum Rice-Coates
-19 google-news-it Google News (Italy)                     Open
-20  four-four-two         FourFourTwo                Joe Mewis
-                                                                                                                                                      title
-1                                                                             Michael Jackson: Seine Kinder bekommen jeden Monat 80&nbsp;000 Euro | Unterhaltung
-2                                                                                 Ukraine set for symbolic start of EU membership talks, along with Moldova
-3                                                                                        Stammplatz-Podcast: Diesen Vorteil haben die Spanier jetzt | Sport
-4                                                                                           Euro 2024: England qualify for last 16 after Spain beat Albania
-5                                                                                 Albania 0-1 Spain: Ferran Torres goal secures Euro 2024 100% group record
-6                                                                                                                          Croatia vs Italy: UEFA Euro 2024
-7                                                                  WATCH: Copa America wheels out brilliant Euros innovation that's been missing in Germany
-8                                                                 ‘It’s hard to watch’ Wayne Rooney offers sympathy to Luka Modric after Croatia heartbreak
-9                                                      'This cannot continue' Wild celebrations during Croatia vs Italy see cups fly as BBC team get soaked
-10                                                                                     Euro 2024: England qualify for last 16 after rivals do them a favour
-11                                                                                                    Croatia 1-1 Italy (Jun 24, 2024) Game Analysis - ESPN
-12                                      Euro 2024: Croazia Italia 1-1, Zaccagni ci porta agli Ottavi DIRETTA e FOTO - Europei 2024 - Ansa.it - Agenzia ANSA
-13                                                                       'They're grown men' Danny Murphy channels his inner Mark Lawrenson with Italy quip
-14                                                   Victorian farming couple working to grow Australia's elderberry industry, in a Europe-dominated market
-15                                                                                             Euro 2024: Gareth Southgate 'oblivious' to England criticism
-16                                                                     Ue, Meloni riceve Orban prima del Consiglio europeo. La strategia sui top - Il Tempo
-17                                                                         Euro 2024: Gary Lineker and Alan Shearer fire back at England captain Harry Kane
-18 'Sorry, I was gone there for a minute!' Gary Lineker and Alan Shearer cry tears of laughter at Micah Richards BBC studio antics in front of Wayne Rooney
-19          La cooperativa agricola dei Lovato dove è morto Satnam Singh ha ricevuto in tre anni 849mila euro di finanziamenti garantiti dallo Stato - Open
-20                                                                        Euro 2024: Joe Hart responds after everyone says the same thing about his posture
-                                                                                                                                                                                                                                     description
-1                                                                                    Er galt zu Lebzeiten als extrem scheu, kompliziert und einsam. Dabei verdiente der Megastar Millionen und umgab sich jahrelang vor allem gerne mit Kindern.
-2  The European Union will open membership talks with Ukraine on Tuesday, giving the country a political boost in the midst of its war against Russia's invasion, although a long and tough road still lies ahead before it could join the bloc.
-3                                                                                    Drei Spiele, neun Punkte, 5:0-Tore! Spätestens nach der perfekten Vorrunde ist klar: Spanien gehört zu den großen Favoriten bei dieser Europameisterschaft.
-4                                                                                                                                    England qualify for the last 16 of Euro 2024 with a group game to spare after Spain beat Albania on Monday.
-5                                                                                                                      Spain get the better of Albania as an early goal from Ferran Torres in Dusseldorf extends their 100% record at Euro 2024.
-6                                                                                                                                         Follow live text commentary, score updates and match stats from Croatia vs Italy in the UEFA Euro 2024
-7                                                                                                                                     The tiny car was one of our favourite Euro 2020 innovations and it's now headed stateside for Copa America
-8                                                                                                                                                      Croatia conceded a dramatic late equaliser against Italy in their crucial Euro 2024 clash
-9                                                                                                                                                 Luka Modric's second-half goal provided one of the most remarkable moments of Euro 2024 so far
-10                                                                                                                        England sealed a place in the last 16 at Euro 2024, 22 hours before they were due to kick off their final Group C game
-11                                                                                                                           Expert recap and game analysis of the Croatia vs. Italy Uefa European Championship game from June 24, 2024 on ESPN.
-12                                                                                                                                                                                                                                          &lt;NA&gt;
-13                                                                                                                       It's fair to say Danny Murphy isn't much of a gamer if his latest slice of Euro 2024 co-commentary is anything to go by
-14                                                                While elderberry can be found in everything from cordial to cosmetics around the globe, in Australia its health benefits and potential are only just beginning to be realised.
-15                                                                         England manager Gareth Southgate says he has learned to block out criticism and that he and his players have been "brutally honest" about where they need to improve.
-16                                                                                                                                                                                                                                          &lt;NA&gt;
-17                                                                                                                The BBC pair have issued their responses after Harry Kane was asked about their criticism in a recent England press conference
-18                                                                                                               Micah Richards had the BBC Match of the Day presenter and Shearer and Rooney in stitches ahead of Croatia vs Italy at Euro 2024
-19                                                                                                                                                                                                                                          &lt;NA&gt;
-20                                                                                                                                                  We should all try to be more like Euro 2024 Joe Hart when it comes to sitting up straight...
-                                                                                                                                                                                                                                                                                                                                                                              url
-1                                                                                                                                                                                                                                                    https://www.bild.de/unterhaltung/musik/michael-jackson-seine-kinder-bekommen-jeden-monat-80000-euro-6679309c0e489c19626b44b6
-2                                                                                                                                                                                                                                                              https://www.reuters.com/world/europe/ukraine-set-symbolic-start-eu-membership-talks-along-with-moldova-2024-06-25/
-3                                                                                                                                                                                                                                                           https://www.bild.de/sport/fussball/stammplatz-podcast-diesen-vorteil-haben-die-spanier-jetzt-6679ff0ab693e33a5083dacd
-4                                                                                                                                                                                                                                                                                                                       http://www.bbc.co.uk/sport/football/articles/cx000e5xj1zo
-5                                                                                                                                                                                                                                                                                                                           http://www.bbc.co.uk/sport/football/live/cn00v9krdg9t
-6                                                                                                                                                                                                                                                                                                                           http://www.bbc.co.uk/sport/football/live/cpvvg6kdgrvt
-7                                                                                                                                                                                                                                                         https://www.fourfourtwo.com/news/watch-copa-america-wheels-out-brilliant-euros-innovation-thats-been-missing-in-germany
-8                                                                                                                                                                                                                                                                                                     https://www.fourfourtwo.com/news/wayne-rooney-luka-modric-croatia-euro-2024
-9                                                                                                                                                                                                                                             https://www.fourfourtwo.com/news/this-cannot-continue-wild-celebrations-during-croatia-vs-italy-see-cups-fly-as-bbc-team-get-soaked
-10                                                                                                                                                                                                                                                                           https://www.fourfourtwo.com/news/euro-2024-england-qualify-for-last-16-after-rivals-do-them-a-favour
-11                                                                                                                                                                                                                                                                                                                             https://www.espn.com/soccer/report/_/gameId/690599
-12                                                                                                                                   https://news.google.com/rss/articles/CBMiiQFodHRwczovL3d3dy5hbnNhLml0L2V1cm9wZWlfMjAyNC9ub3RpemllLzIwMjQvMDYvMjQvZXVyby0yMDI0LWNyb2F6aWEtaXRhbGlhLTAtMC1kaXJldHRhLWUtZm90b19hYTZmNWE3MS05NDI4LTRkZTgtOGRmNy0wMTE3MzhjYmQzZWMuaHRtbNIBAA?oc=5
-13                                                                                                                                                                                                                                                               https://www.fourfourtwo.com/news/theyre-grown-men-danny-murphy-channels-his-inner-mark-lawrenson-with-italy-quip
-14                                                                                                                                                                                                                                                                             https://www.abc.net.au/news/2024-06-25/farming-couple-grow-australia-elderberry-industry/103977602
-15                                                                                                                                                                                                                                                                                                                      http://www.bbc.co.uk/sport/football/articles/cv22230x4dno
-16 https://news.google.com/rss/articles/CBMidGh0dHBzOi8vd3d3LmlsdGVtcG8uaXQvcG9saXRpY2EvMjAyNC8wNi8yNC9uZXdzL2dpb3JnaWEtbWVsb25pLXJpY2V2ZS12aWt0b3Itb3JiYW4tcHJpbWEtY29uc2lnbGlvLWV1cm9wZW8tMzk3MDExMDkv0gF4aHR0cHM6Ly93d3cuaWx0ZW1wby5pdC9wb2xpdGljYS8yMDI0LzA2LzI0L25ld3MvZ2lvcmdpYS1tZWxvbmktcmljZXZlLXZpa3Rvci1vcmJhbi1wcmltYS1jb25zaWdsaW8tZXVyb3Blby0zOTcwMTEwOS9hbXAv?oc=5
-17                                                                                                                                                                                                                                                               https://www.fourfourtwo.com/news/euro-2024-gary-lineker-and-alan-shearer-fire-back-at-england-captain-harry-kane
-18                                                                                                                                                                                                                                                                                 https://www.fourfourtwo.com/news/gary-lineker-alan-shearer-tears-of-laughter-at-micah-richards
-19                                                                                                                                                                           https://news.google.com/rss/articles/CBMibGh0dHBzOi8vd3d3Lm9wZW4ub25saW5lLzIwMjQvMDYvMjQvYWdyaWxvdmF0by1jb29wZXJhdGl2YS1sYXRpbmEtc2F0bmFtLXNpbmdoLWZpbmFuemlhbWVudGktZ2FyYW50aXRpLXN0YXRvL9IBAA?oc=5
-20                                                                                                                                                                                                                                                              https://www.fourfourtwo.com/news/euro-2024-joe-hart-responds-after-everyone-says-the-same-thing-about-his-posture
-                                                                                                                                                                              urlToImage
-1                                                                                       https://images.bild.de/6679309c0e489c19626b44b6/7feee6bd46be6adf0cd44b3faf9e2c43,68d0a586?w=1280
-2   https://www.reuters.com/resizer/v2/KYYT63NDQVI2VENML2LZ7WBKOA.jpg?auth=3c4ac6f4c29e6ca4cb659a24c0bf06466cc40b799f7deb657cf5157eb8b7ce4f&amp;height=1005&amp;width=1920&amp;quality=80&amp;smart=true
-3                                                                                       https://images.bild.de/6679ff0ab693e33a5083dacd/ef96276014133f8c451ceb3fb8b4d8fc,409e9c72?w=1280
-4                                                                                    https://ichef.bbci.co.uk/news/1024/branded_sport/77cd/live/f3e87570-3238-11ef-bc72-51b61c17135e.jpg
-5                                                                                     https://static.files.bbci.co.uk/ws/simorgh-assets/public/sport/images/metadata/poster-1024x576.png
-6                                                                                     https://static.files.bbci.co.uk/ws/simorgh-assets/public/sport/images/metadata/poster-1024x576.png
-7                                                                                                                   https://cdn.mos.cms.futurecdn.net/x4ZMz8RiEH3xaHxxLmwVyC-1200-80.jpg
-8                                                                                                                   https://cdn.mos.cms.futurecdn.net/5jtq6K4KLmQy2D3JhKSRbX-1200-80.jpg
-9                                                                                                                   https://cdn.mos.cms.futurecdn.net/dQfCqwJehLSH4REVJGbAeA-1200-80.jpg
-10                                                                                                                  https://cdn.mos.cms.futurecdn.net/cWV77Mu73ArpjJTKtBjWGU-1200-80.jpg
-11                                                                                                                https://a.espncdn.com/combiner/i?img=/i/espn/misc_logos/500/soccer.png
-12                                                                                                                                                                                  &lt;NA&gt;
-13                                                                                                                  https://cdn.mos.cms.futurecdn.net/4roSnjVUA6MFMpZNtpz8oi-1200-80.jpg
-14 https://live-production.wcms.abc-cdn.net.au/bc59903f5e0ae517d037179e2f4054ca?impolicy=wcms_watermark_news&amp;cropH=1701&amp;cropW=3024&amp;xPos=0&amp;yPos=363&amp;width=862&amp;height=485&amp;imformat=generic
-15                                                                                   https://ichef.bbci.co.uk/news/1024/branded_sport/0e20/live/54ca9b50-3263-11ef-badd-d91c665bd6c4.jpg
-16                                                                                                                                                                                  &lt;NA&gt;
-17                                                                                                                  https://cdn.mos.cms.futurecdn.net/M55tCdisn9AQEYA9MobQnd-1200-80.jpg
-18                                                                                                                  https://cdn.mos.cms.futurecdn.net/HoPjpoH3wxQnZmNWoh7jA5-1200-80.jpg
-19                                                                                                                                                                                  &lt;NA&gt;
-20                                                                                                                  https://cdn.mos.cms.futurecdn.net/fmo7Apw2M25kBUT6nGnBii-1200-80.jpg
-                    publishedAt
-1          2024-06-25T01:00:24Z
-2          2024-06-25T00:07:19Z
-3          2024-06-24T23:49:29Z
-4  2024-06-24T22:07:18.5807287Z
-5  2024-06-24T22:07:15.5658533Z
-6  2024-06-24T22:07:12.6899581Z
-7          2024-06-24T22:00:55Z
-8          2024-06-24T21:58:08Z
-9          2024-06-24T21:30:10Z
-10         2024-06-24T21:22:36Z
-11 2024-06-24T21:22:12.1904812Z
-12    2024-06-24T21:06:00+00:00
-13         2024-06-24T20:31:31Z
-14         2024-06-24T20:28:45Z
-15 2024-06-24T20:07:17.5332767Z
-16    2024-06-24T19:46:00+00:00
-17         2024-06-24T19:45:07Z
-18         2024-06-24T19:38:38Z
-19    2024-06-24T18:41:16+00:00
-20         2024-06-24T18:30:51Z
-                                                                                                                                                                                                                       content
-1  Einloggen und mitfiebern JETZT WWE-Kracher RAW live schauen!\r\nEinloggen und mitfiebern JETZT WWE-Kracher RAW live schauen!\r\nEinloggen und mitfiebern JETZT WWE-Kracher RAW live schauen!\r\nEinloggen und… [+418 chars]
-2                                                                                                                                                                                                                         &lt;NA&gt;
-3     Drei Spiele, neun Punkte, 5:0-Tore!\r\nSpätestens nach der perfekten Vorrunde ist klar: Spanien gehört zu den großen Favoriten bei dieser Europameisterschaft. Im letzten Gruppenspiel gegen Albanien in … [+1706 chars]
-4      England have qualified for the last 16 of Euro 2024 with a group game to spare after Spain beat Albania 1-0 on Monday.\r\nVictory for Luis de la Fuente's side also means the Netherlands and France prog… [+939 chars]
-5     Three-time European champions Spain had already secured top spot thanks to wins over Croatia and Italy, so coach Luis de la Fuente was able to make 10 changes to his starting line-up.\r\nThe substituti… [+1514 chars]
-6      Croatias players collapsed to the ground at the final whistle, while their fans stood motionless in the stands, staring in disbelief at what had just unfolded.\r\nThe 2018 World Cup finalists had been … [+960 chars]
-7       As we reach the tail end of the Euro 2024 group stage, the tournament in Germany has been pretty entertaining so far. We’ve had brilliant goals, last-minute winners, an under-the-radar instant classi… [+2323 chars]
-8     Wayne Rooney was quick to offer his condolences to Luka Modric after Croatia were all but knocked out of Euro 2024 after conceding a late equaliser against Italy.\r\nThe former Manchester United strike… [+1744 chars]
-9       Luca Modric provided one of Euro 2024’s signature moments so far during the second half of Croatia’s decisive clash with Italy. The Group B clash had been low on incidents during the first half, but … [+2938 chars]
-10      England qualified for the last 16 of Euro 2024 on Monday evening without even kicking a ball. Gareth Southgate's side are currently undergoing final preparations for their third and final Group C gam… [+2517 chars]
-11      An added time goal from Italy's Mattia Zaccagni snatched a 1-1 draw with Croatia which was enough to earn them a place in the last 16 of Euro 2024 as Group B runners-up where they will face Switzerla… [+1059 chars]
-12                                                                                                                                                                                                                        &lt;NA&gt;
-13      The role of the co-commentator can be a tricky one. Whereas the lead commentator has the responsibility of describing the action, perhaps capturing the passion and excitement of a game, co-commentary… [+2197 chars]
-14      &lt;ul&gt;&lt;li&gt;In short:&nbsp;For centuries the elderberry shrub has been transformed into everything from cold remedies to cordial.&nbsp;&lt;/li&gt;&lt;li&gt;The global elderberry market is expected to grow by almost $400 milli… [+5631 chars]
-15    England manager Gareth Southgate says he has learned to block out criticism and that he and his players have been "brutally honest" about where they need to improve.\r\nA number of his players were cri… [+1283 chars]
-16                                                                                                                                                                                                                        &lt;NA&gt;
-17      Alan Shearer and Gary Lineker have defended comments they made regarding England's sluggish start at Euro 2024 this summer. Three Lions captain Harry Kane was asked himself what he made of the remark… [+2837 chars]
-18    Gary Lineker and Alan Shearer brought some of the joviality more common on their The Rest Is Football podcast to the BBC’s coverage in the build-up to Croatia vs Italy.\r\nThe mood was light in the stu… [+1867 chars]
-19                                                                                                                                                                                                                        &lt;NA&gt;
-20    Former England goalkeeper Joe Hart has taken his first steps into a media career at Euro 2024, after hanging up his gloves at the end of last season.&nbsp;\r\nThe 37-year-old called time on a decorated care… [+2513 chars]</code></pre>
+<pre><code>      source.id source.name             author
+1       reuters     Reuters        Andrew Gray
+2     bbc-sport   BBC Sport               &lt;NA&gt;
+3     bbc-sport   BBC Sport               &lt;NA&gt;
+4     bbc-sport   BBC Sport               &lt;NA&gt;
+5 four-four-two FourFourTwo          Joe Mewis
+6 four-four-two FourFourTwo Callum Rice-Coates
+                                                                                      title
+1                 Ukraine set for symbolic start of EU membership talks, along with Moldova
+2                           Euro 2024: England qualify for last 16 after Spain beat Albania
+3                 Albania 0-1 Spain: Ferran Torres goal secures Euro 2024 100% group record
+4                                                          Croatia vs Italy: UEFA Euro 2024
+5  WATCH: Copa America wheels out brilliant Euros innovation that's been missing in Germany
+6 ‘It’s hard to watch’ Wayne Rooney offers sympathy to Luka Modric after Croatia heartbreak
+                                                                                                                                                                                                                                    description
+1 The European Union will open membership talks with Ukraine on Tuesday, giving the country a political boost in the midst of its war against Russia's invasion, although a long and tough road still lies ahead before it could join the bloc.
+2                                                                                                                                   England qualify for the last 16 of Euro 2024 with a group game to spare after Spain beat Albania on Monday.
+3                                                                                                                     Spain get the better of Albania as an early goal from Ferran Torres in Dusseldorf extends their 100% record at Euro 2024.
+4                                                                                                                                        Follow live text commentary, score updates and match stats from Croatia vs Italy in the UEFA Euro 2024
+5                                                                                                                                    The tiny car was one of our favourite Euro 2020 innovations and it's now headed stateside for Copa America
+6                                                                                                                                                     Croatia conceded a dramatic late equaliser against Italy in their crucial Euro 2024 clash
+                                                                                                                      url
+1      https://www.reuters.com/world/europe/ukraine-set-symbolic-start-eu-membership-talks-along-with-moldova-2024-06-25/
+2                                                               http://www.bbc.co.uk/sport/football/articles/cx000e5xj1zo
+3                                                                   http://www.bbc.co.uk/sport/football/live/cn00v9krdg9t
+4                                                                   http://www.bbc.co.uk/sport/football/live/cpvvg6kdgrvt
+5 https://www.fourfourtwo.com/news/watch-copa-america-wheels-out-brilliant-euros-innovation-thats-been-missing-in-germany
+6                                             https://www.fourfourtwo.com/news/wayne-rooney-luka-modric-croatia-euro-2024
+                                                                                                                                                                            urlToImage
+1 https://www.reuters.com/resizer/v2/KYYT63NDQVI2VENML2LZ7WBKOA.jpg?auth=3c4ac6f4c29e6ca4cb659a24c0bf06466cc40b799f7deb657cf5157eb8b7ce4f&amp;height=1005&amp;width=1920&amp;quality=80&amp;smart=true
+2                                                                                  https://ichef.bbci.co.uk/news/1024/branded_sport/77cd/live/f3e87570-3238-11ef-bc72-51b61c17135e.jpg
+3                                                                                   https://static.files.bbci.co.uk/ws/simorgh-assets/public/sport/images/metadata/poster-1024x576.png
+4                                                                                   https://static.files.bbci.co.uk/ws/simorgh-assets/public/sport/images/metadata/poster-1024x576.png
+5                                                                                                                 https://cdn.mos.cms.futurecdn.net/x4ZMz8RiEH3xaHxxLmwVyC-1200-80.jpg
+6                                                                                                                 https://cdn.mos.cms.futurecdn.net/5jtq6K4KLmQy2D3JhKSRbX-1200-80.jpg
+                   publishedAt
+1         2024-06-25T00:07:19Z
+2 2024-06-24T22:07:18.5807287Z
+3 2024-06-24T22:07:15.5658533Z
+4 2024-06-24T22:07:12.6899581Z
+5         2024-06-24T22:00:55Z
+6         2024-06-24T21:58:08Z
+                                                                                                                                                                                                                   content
+1                                                                                                                                                                                                                     &lt;NA&gt;
+2  England have qualified for the last 16 of Euro 2024 with a group game to spare after Spain beat Albania 1-0 on Monday.\r\nVictory for Luis de la Fuente's side also means the Netherlands and France prog… [+939 chars]
+3 Three-time European champions Spain had already secured top spot thanks to wins over Croatia and Italy, so coach Luis de la Fuente was able to make 10 changes to his starting line-up.\r\nThe substituti… [+1514 chars]
+4  Croatias players collapsed to the ground at the final whistle, while their fans stood motionless in the stands, staring in disbelief at what had just unfolded.\r\nThe 2018 World Cup finalists had been … [+960 chars]
+5   As we reach the tail end of the Euro 2024 group stage, the tournament in Germany has been pretty entertaining so far. We’ve had brilliant goals, last-minute winners, an under-the-radar instant classi… [+2323 chars]
+6 Wayne Rooney was quick to offer his condolences to Luka Modric after Croatia were all but knocked out of Euro 2024 after conceding a late equaliser against Italy.\r\nThe former Manchester United strike… [+1744 chars]</code></pre>
 </div>
 </div>
 <p>Trying with different keyword and different data</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">news_api</span>(<span class="at">keyword =</span> <span class="st">"UEFA"</span>,<span class="at">from_date =</span> <span class="st">"2024-06-05"</span>,<span class="at">api_key =</span> <span class="st">"e715bbaccd5849a0baf5c9fa6eb42a68"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">news_api</span>(<span class="at">keyword =</span> <span class="st">"UEFA"</span>,<span class="at">from_date =</span> <span class="st">"2024-06-05"</span>,<span class="at">api_key =</span> <span class="st">"e715bbaccd5849a0baf5c9fa6eb42a68"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>         source.id      source.name                   author
 1        bbc-sport        BBC Sport                     &lt;NA&gt;
